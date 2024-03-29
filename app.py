@@ -13,6 +13,7 @@ def about():
 
 @app.route('/GymFinder.html')
 def GymFinder():
+    callApi
     return render_template ('GymFinder.html')  
 
 @app.route('/Calender.html')
@@ -26,4 +27,4 @@ def Statistics():
 @app.route('/')
 @app.route('/Main.html')
 def Main():
-    return render_template ('Main.html')   
+    return render_template ('Main.html')
