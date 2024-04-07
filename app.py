@@ -1,8 +1,10 @@
 from flask import render_template
 from flask import Flask
+from map import map_app
 
 app = Flask(__name__)
 
+app.register_blueprint(map_app)
 
 
 @app.route('/about.html')
@@ -11,10 +13,10 @@ def about():
     return render_template('about.html', title='Home', user=user)
 
 
-@app.route('/GymFinder.html')
-def GymFinder():
-    callApi
-    return render_template ('GymFinder.html')  
+#@app.route('/GymFinder.html')
+#def GymFinder():
+  #  callApi
+    #return render_template ('GymFinder.html')  
 
 @app.route('/Calender.html')
 def Calender():
