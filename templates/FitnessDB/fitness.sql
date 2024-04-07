@@ -37,15 +37,17 @@ CREATE TABLE fitness_level(
 
 
 CREATE TABLE gender(
-    gender_id INTEGER NOT NULL PRIMARY KEY,
+    gender_id TEXT NOT NULL PRIMARY KEY,
     gender_name TEXT
 );
 
 /**PRAGMA foreign_keys = ON;**/
 
 /**
-ex: how to add to db
-INSERT INTO Users (first_name, last_name, email)
-VALUES ('John', 'Doe', 'john.doe@example.com');
+NSERT INTO gender(gender_id, gender_name)
+VALUES(f, 'female')
 **/
 
+/**DROP TABLE gender;**/
+
+Select * from gender;
