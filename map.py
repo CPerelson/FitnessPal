@@ -1,3 +1,5 @@
+from flask import Flask, render_template
+
 import requests
 
 def get_dist_dur(api_key, start, end):
@@ -23,13 +25,18 @@ def get_dist_dur(api_key, start, end):
     else:
         print("Failed to make the request.")
         return None, None
-
+ @app.route('/GymFinder.html')       
+def index():
 api_key = "AIzaSyCKHN7F6eHLoJBAAwAvHfRh20qFaRYtjwM"
 start = "681 crown street, brooklyn, new york, 11213"
 end = "1231 east 68th street, brookly, new york, 11234"
 
 distance, duration = get_dist_dur(api_key, start, end)
 
-if distance and duration:
-    print(f"Driving Distance: {distance}")
-    print(f"Driving Duration: {duration}")
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+#if distance and duration:
+   #print(f"Driving Distance: {distance}")
+    #print(f"Driving Duration: {duration}")
