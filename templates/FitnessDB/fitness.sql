@@ -35,19 +35,22 @@ CREATE TABLE fitness_level(
 );
 **/
 
-
+/**
 CREATE TABLE gender(
     gender_id TEXT NOT NULL PRIMARY KEY,
     gender_name TEXT
 );
-
+**/
 /**PRAGMA foreign_keys = ON;**/
 
 /**
-NSERT INTO gender(gender_id, gender_name)
-VALUES(f, 'female')
+INSERT INTO gender(gender_id, gender_name)
+VALUES('f', 'female');
 **/
-
 /**DROP TABLE gender;**/
 
 Select * from gender;
+
+/** conncting db to python
+from cs50 import SQL
+db = SQL("sqlite:///Fitness.db")**/
