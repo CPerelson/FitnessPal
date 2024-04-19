@@ -51,6 +51,3 @@ VALUES('f', 'female');
 
 Select * from gender;
 
-/** conncting db to python
-from cs50 import SQL
-db = SQL("sqlite:///Fitness.db")**/
