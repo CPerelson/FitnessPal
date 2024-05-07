@@ -22,7 +22,7 @@ def Calender():
 def Statistics():
     return render_template ('Statistics.html')  
 
-@app.route('/')
+
 @app.route('/Main.html')
 def Main():
     return render_template ('Main.html')
@@ -35,10 +35,12 @@ def login():
 def signup():
     return render_template('signup.html')
 
-@app.route('/profile.html', methods=['GET', 'POST'])
+@app.route('/profile.html')
 def profile():
-    if request.method == 'POST':
-        name = request.form.get('name')
-        return render_template('profile.html', name=name)
-    return render_template('profile.html', name=None)
-    
+    return render_template('profile.html')
+
+@app.route('/')
+@app.route('/loginPage.html')
+def loginPage():
+    return render_template('loginPage.html')
+
