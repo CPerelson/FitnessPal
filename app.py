@@ -3,8 +3,6 @@ from flask import Flask
 
 app = Flask(__name__)
 
-
-
 @app.route('/about.html')
 def about():
     user = {'username': 'Sara'}
@@ -24,7 +22,25 @@ def Calender():
 def Statistics():
     return render_template ('Statistics.html')  
 
-@app.route('/')
+
 @app.route('/Main.html')
 def Main():
     return render_template ('Main.html')
+
+@app.route('/login.html')
+def login():
+    return render_template('login.html')
+
+@app.route('/signup.html')
+def signup():
+    return render_template('signup.html')
+
+@app.route('/profile.html')
+def profile():
+    return render_template('profile.html')
+
+@app.route('/')
+@app.route('/loginPage.html')
+def loginPage():
+    return render_template('loginPage.html')
+
