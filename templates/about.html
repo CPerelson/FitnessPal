@@ -2,8 +2,76 @@
 <html>
     <head>
         <title>{{ title }} - Microblog</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='Main.css') }}">
     </head>
     <body>
+        <nav>
+            <a href="profile.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="GymFinder.html">Gym Finder</a>
+            <a href="Calender.html">Calender</a>
+            <a href="Statistics.html">Statistics</a>
+        </nav>
+
         <h1>Hello, {{ user.username }}!</h1>
+        <h2>Welcome to FitnessPal!</h2>
+        <div class="container">
+            <h3>Welcome to Our Fitness App</h3>
+            <p>Here, we blend cutting-edge technology with personalized guidance to empower you in achieving your fitness goals. Whether you're a seasoned athlete or just starting out, our user-friendly interface and comprehensive features cater to all levels and interests.</p>
+            <p>From custom workout plans tailored to your needs, to tracking your progress with precision, we're here to support you every step of the way. Join our vibrant community of fitness enthusiasts and embrace the challenge of becoming the best version of yourself.</p>
+            <p>Together, let's make every workout count and celebrate every milestone achieved. Welcome aboard!</p>
+            <a href="#" class="button">Get Started</a>
+        </div>
     </body>
 </html>
+
+<style>
+    /* Body styles */
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Container styles */
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    /* Heading styles */
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #007bff;
+    }
+
+    /* Paragraph styles */
+    p {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    /* Button styles */
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    /* Button hover effect */
+    .button:hover {
+        background-color: #0056b3;
+    }
+
+</style>

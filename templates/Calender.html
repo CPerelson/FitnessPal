@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,4 +74,141 @@
         });
     </script>
 </body>
+=======
+<!doctype html>
+<html>
+    <head>
+        <title>Calender</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='Main.css') }}">
+    </head>
+    <body>
+        <nav>
+            <a href="profile.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="GymFinder.html">Gym Finder</a>
+            <a href="Calender.html">Calender</a>
+            <a href="Statistics.html">Statistics</a>
+        </nav>
+
+        <h1>Welcome to calender!!</h1>
+
+        <div class="calendar">
+            <div class="header">
+              <button id="prevBtn">&lt;</button>
+              <h2 id="monthYear">May 2024</h2>
+              <button id="nextBtn">&gt;</button>
+            </div>
+            <div class="days">
+              <div class="day">Sun</div>
+              <div class="day">Mon</div>
+              <div class="day">Tue</div>
+              <div class="day">Wed</div>
+              <div class="day">Thu</div>
+              <div class="day">Fri</div>
+              <div class="day">Sat</div>
+            </div>
+            <div class="dates" id="dates"></div>
+          </div>
+    </body>
+>>>>>>> c5acac7d0f12aaf5e3e0c76675f6aecc96bc9f97
 </html>
+<style>
+    /* Add your styles here */
+.calendar {
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 10px;
+}
+
+.day {
+  font-weight: bold;
+}
+
+.dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.date {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+  const currentDate = new Date();
+  const month = currentDate.getMonth();
+  const year = currentDate.getFullYear();
+
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const monthYear = document.getElementById('monthYear');
+  const datesContainer = document.getElementById('dates');
+
+  let currentMonth = month;
+  let currentYear = year;
+
+  function renderCalendar() {
+    const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+    const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+    monthYear.textContent = `${getMonthName(currentMonth)} ${currentYear}`;
+
+    let datesHTML = '';
+
+    for (let i = 0; i < firstDayOfMonth; i++) {
+      datesHTML += `<div class="date"></div>`;
+    }
+
+    for (let i = 1; i <= lastDayOfMonth; i++) {
+      datesHTML += `<div class="date">${i}</div>`;
+    }
+
+    datesContainer.innerHTML = datesHTML;
+  }
+
+  function getMonthName(monthIndex) {
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    return months[monthIndex];
+  }
+
+  prevBtn.addEventListener('click', function () {
+    if (currentMonth === 0) {
+      currentMonth = 11;
+      currentYear -= 1;
+    } else {
+      currentMonth -= 1;
+    }
+    renderCalendar();
+  });
+
+  nextBtn.addEventListener('click', function () {
+    if (currentMonth === 11) {
+      currentMonth = 0;
+      currentYear += 1;
+    } else {
+      currentMonth += 1;
+    }
+    renderCalendar();
+  });
+
+  renderCalendar();
+});
+
+</script>

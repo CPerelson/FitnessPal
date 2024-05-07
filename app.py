@@ -5,9 +5,12 @@ from map import map_app
 
 app = Flask(__name__)
 
+<<<<<<< HEAD
 app.register_blueprint(map_app)
 
 
+=======
+>>>>>>> c5acac7d0f12aaf5e3e0c76675f6aecc96bc9f97
 @app.route('/about.html')
 def about():
     user = {'username': 'Sara'}
@@ -32,7 +35,25 @@ def Calender():
 def Statistics():
     return render_template ('Statistics.html')  
 
-@app.route('/')
+
 @app.route('/Main.html')
 def Main():
     return render_template ('Main.html')
+
+@app.route('/login.html')
+def login():
+    return render_template('login.html')
+
+@app.route('/signup.html')
+def signup():
+    return render_template('signup.html')
+
+@app.route('/profile.html')
+def profile():
+    return render_template('profile.html')
+
+@app.route('/')
+@app.route('/loginPage.html')
+def loginPage():
+    return render_template('loginPage.html')
+
