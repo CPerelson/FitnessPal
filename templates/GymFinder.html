@@ -2,11 +2,67 @@
 <html>
 <head>
     <title>Google Maps Example</title>
-   
+    <style>
+        /* Set the size of the map container */
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
+    <!-- Display the driving distance and duration -->
     <h1>Driving Distance: {{ distance }}</h1>
     <h1>Driving Duration: {{ duration }}</h1>
+    
+    <!-- Map container -->
+    <div id="map"></div>
 
+    <!-- Load the Google Maps JavaScript API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YAIzaSyCKHN7F6eHLoJBAAwAvHfRh20qFaRYtjwM&callback=initMap" async defer>
+        function initMap() {
+            // Define the origin and destination coordinates
+            var start = {lat: 40.668526, lng: -73.944583}; // Example: Brooklyn
+            var end = {lat: 40.616868, lng: -73.926923};   // Example: Another location in Brooklyn
+
+            // Create a map object and specify the DOM element for display
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: start,
+                zoom: 12 // Adjust the zoom level as needed
+            });
+
+            // Create markers for the origin and destination
+            var markerStart = new google.maps.Marker({
+                position: start,
+                map: map,
+                title: 'Start'
+            });
+
+            var markerEnd = new google.maps.Marker({
+                position: end,
+                map: map,
+                title: 'End'
+            });
+
+            // Draw a line (route) between the origin and destination
+            var directionsService = new google.maps.DirectionsService();
+            var directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+
+            var request = {
+                origin: start,
+                destination: end,
+                travelMode: 'DRIVING'
+            };
+
+            directionsService.route(request, function(response, status) {
+                if (status === 'OK') {
+                    directionsRenderer.setDirections(response);
+                } else {
+                    window.alert('Directions request failed due to ' + status);
+                }
+            });
+        }
+    </script>
 </body>
 </html>
