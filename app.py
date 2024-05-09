@@ -5,7 +5,7 @@ import datetime
 
 app = Flask(__name__)
 
-gmaps = googlemaps.Client(key='')
+gmaps = googlemaps.Client(key='AIzaSyCKHN7F6eHLoJBAAwAvHfRh20qFaRYtjwM')
 
 @app.route('/about.html')
 def about():
