@@ -8,10 +8,10 @@ from flask_login import login_required, current_user, login_user, logout_user
 import sqlalchemy as sa
 from flask import flash, redirect, url_for
 
-
 #Initialize Flask app
 app = Flask(__name__)
 
+#Initialize googlemaps
 gmaps = googlemaps.Client(key='AIzaSyCKHN7F6eHLoJBAAwAvHfRh20qFaRYtjwM')
 
 #Routes
@@ -46,7 +46,6 @@ def about():
     user = {'username': 'Sara'}
     return render_template('about.html', title='Home', user=user)
 
-
 #@app.route('/Calender.html')
 #def Calender():
     #return render_template ('Calender.html')  
@@ -59,7 +58,6 @@ def Calender():
 @app.route('/Statistics.html')
 def Statistics():
     return render_template ('Statistics.html')  
-
 
 @app.route('/Main.html')
 def Main():
@@ -81,7 +79,6 @@ def signup():
 @login_required
 def profile():
     return render_template('profile.html')
-
 
 
 @app.route('/GymFinder.html', methods=['GET', 'POST'])

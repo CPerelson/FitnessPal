@@ -2,30 +2,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness Hub</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='Main.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Main.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Welcome to Fitness Hub</h1>
-        <p>Your ultimate destination for fitness and wellness</p>
-    </header>
-    <nav>
-        <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('about') }}">About</a>
-        <a href="{{ url_for('gym_finder') }}">Gym Finder</a>
-        <a href="{{ url_for('calendar') }}">Calendar</a>
-        <a href="{{ url_for('statistics') }}">Statistics</a>
-    </nav>
-    <section>
-        {% block content %}
-        {% endblock %}
-    </section>
-    <footer>
-        <p>&copy; 2024 Fitness Hub. All rights reserved.</p>
-    </footer>
+    <header>
+        <h1>Welcome to Fitness Hub</h1>
+        <p>Your ultimate destination for fitness and wellness</p>
+    </header>
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('gym_finder') }}">Gym Finder</a>
+        <a href="{{ url_for('calendar') }}">Calendar</a>
+        <a href="{{ url_for('statistics') }}">Statistics</a>
+    </nav>
+    <section>
+        {% block content %}
+        {% endblock %}
+    </section>
+    <footer>
+        <p>&copy; 2024 Fitness Hub. All rights reserved.</p>
+    </footer>
 </body>
 </html>  
 
@@ -34,6 +34,8 @@
 
 {% block content %}
 <h1 class="title">
-    Welcome, {{ name }}!
+    Welcome, {{ name }}!
 </h1>
 {% endblock %} 
+
+
