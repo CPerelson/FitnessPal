@@ -1,12 +1,13 @@
 
 /**
-CREATE TABLE users(
+CREATE TABLE user(
     user_id INTEGER NOT NULL PRIMARY KEY, 
     user_name TEXT NOT NULL,
     email TEXT, 
     age INTEGER,
     address TEXT
 );
+
 **/
 /**
 ALTER TABLE users
@@ -49,5 +50,5 @@ VALUES('f', 'female');
 **/
 /**DROP TABLE gender;**/
 
-Select * from gender;
+Select * from user;
 

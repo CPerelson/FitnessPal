@@ -1,11 +1,46 @@
-from flask import render_template, Flask, jsonify
-from flask import request
+from flask import render_template, Flask, jsonify, redirect, request
 import googlemaps
 import datetime 
+from forms import LoginForm, RegistrationForm
+from app import db
+from models import Users
+from flask_login import login_required, current_user, login_user, logout_user
+import sqlalchemy as sa
+from flask import flash, redirect, url_for
 
+
+#Initialize Flask app
 app = Flask(__name__)
 
+#Initialize googlemaps
 gmaps = googlemaps.Client(key='AIzaSyCKHN7F6eHLoJBAAwAvHfRh20qFaRYtjwM')
+
+#Routes
+@app.route('/')
+@app.route('/loginPage', methods=['GET', 'POST'])
+def user_login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index.html'))    
+    
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = db.session.scalar(
+            sa.select(Users).where(Users.username == form.username.data)).scalar()
+        if user is None or not user.check_password(form.password.data):
+            flash('Invalid username or password')
+            return render_template('loginPage.html', title='Sign In', form=form)
+        login_user(user, remember=form.remember_me.data)
+        next_page = request.args.get('next')
+        if not next_page or urlsplit(next_page).netloc != '':
+            return redirect(url_for('index.html'))
+    return render_template('loginPage.html', title='Sign In', form=form)
+
+@app.route('/index.html')
+@login_required
+def index():
+    # TODO: read notes from DB
+    notes=[{"text": "note1", "date": "20240201", "text": "note2"}, {"text": "note2", "date": "20240301"}]
+    return render_template('index.html', title='Home', notes=notes)
 
 @app.route('/about.html')
 def about():
@@ -31,22 +66,23 @@ def Statistics():
 def Main():
     return render_template ('Main.html')
 
-@app.route('/login.html')
-def login():
-    return render_template('login.html')
-
-@app.route('/signup.html')
+@app.route('/signup.html', methods=['GET', 'POST'])
 def signup():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = Users(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Congratulations, you are now a registered user!')
+        return redirect(url_for('loginPage'))
     return render_template('signup.html')
 
 @app.route('/profile.html')
+@login_required
 def profile():
     return render_template('profile.html')
 
-@app.route('/')
-@app.route('/loginPage.html')
-def loginPage():
-    return render_template('loginPage.html')
 
 
 @app.route('/GymFinder.html', methods=['GET', 'POST'])
@@ -91,3 +127,11 @@ def recommend_gyms(location):
     
     # Return the list of recommended gyms
     return nearby_gyms
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    request.args
+    return redirect(url_for('loginPage.html'), code=302)
+
