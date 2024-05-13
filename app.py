@@ -12,7 +12,7 @@ from flask import flash, redirect, url_for
 app = Flask(__name__)
 
 #Initialize googlemaps
-gmaps = googlemaps.Client(key='AIzaSyCKHN7F6eHLoJBAAwAvHfRh20qFaRYtjwM')
+gmaps = googlemaps.Client(key='')
 
 #Routes
 @app.route('/')
