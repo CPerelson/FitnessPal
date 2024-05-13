@@ -16,11 +16,12 @@ app = Blueprint('app', __name__)
 app = Flask(__name__)
 
 #Initialize googlemaps
-gmaps = googlemaps.Client(key='')
+gmaps = googlemaps.Client(key='AIzaSyCKHN7F6eHLoJBAAwAvHfRh20qFaRYtjwM')
 
 #Routes
 #@app.route('/')
 @app.route('/loginPage.html', methods=['GET', 'POST'])
+@login_required
 def user_login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))    
