@@ -16,7 +16,7 @@ app = Blueprint('app', __name__)
 app = Flask(__name__)
 
 #Initialize googlemaps
-gmaps = googlemaps.Client(key='AIzaSyCKHN7F6eHLoJBAAwAvHfRh20qFaRYtjwM')
+gmaps = googlemaps.Client(key='')
 
 #Routes
 #@app.route('/')
