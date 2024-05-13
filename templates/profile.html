@@ -13,11 +13,11 @@
         <p>Your ultimate destination for fitness and wellness</p>
     </header>
     <nav>
-        <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for('about') }}">About</a>
-        <a href="{{ url_for('gym_finder') }}">Gym Finder</a>
-        <a href="{{ url_for('calendar') }}">Calendar</a>
-        <a href="{{ url_for('statistics') }}">Statistics</a>
+        <a href="{{ url_for('index.html') }}">Home</a>
+        <a href="{{ url_for('about.html') }}">About</a>
+        <a href="{{ url_for('gym_finder.html') }}">Gym Finder</a>
+        <a href="{{ url_for('calendar.html') }}">Calendar</a>
+        <a href="{{ url_for('statistics.html') }}">Statistics</a>
     </nav>
     <section>
         {% block content %}
@@ -37,5 +37,11 @@
     Welcome, {{ name }}!
 </h1>
 {% endblock %} 
+{% extends "base.html" %}
 
+{% block content %}
+<h1 class="title">
+  Welcome, Sara!
+</h1>
+{% endblock %}
 

@@ -4,50 +4,33 @@
 <div class="column is-4 is-offset-4">
     <h3 class="title">Sign Up</h3>
     <div class="box">
-        <form action="/signup" method="post">
-            {{ form.hidden_tag() }}
-            
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}. Go to <a href="{{ url_for('loginPage') }}">login page</a>.
+            </div>
+        {% endif %}
+        {% endwith %}
+        <form method="POST" action="/signup.html">
             <div class="field">
                 <div class="control">
-                    {{ form.username.label }}<br>
-                    {{ form.username(class="input is-large", placeholder="Username") }}<br>
-                    {% for error in form.username.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
+                    <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
                 </div>
             </div>
-            
+
             <div class="field">
                 <div class="control">
-                    {{ form.email.label }}<br>
-                    {{ form.email(class="input is-large", placeholder="Email") }}<br>
-                    {% for error in form.email.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
+                    <input class="input is-large" type="text" name="name" placeholder="Name" autofocus="">
                 </div>
             </div>
-            
+
             <div class="field">
                 <div class="control">
-                    {{ form.password.label }}<br>
-                    {{ form.password(class="input is-large", placeholder="Password") }}<br>
-                    {% for error in form.password.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
+                    <input class="input is-large" type="password" name="password" placeholder="Password">
                 </div>
             </div>
-            
-            <div class="field">
-                <div class="control">
-                    {{ form.password2.label }}<br>
-                    {{ form.password2(class="input is-large", placeholder="Confirm Password") }}<br>
-                    {% for error in form.password2.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                    {% endfor %}
-                </div>
-            </div>
-            
-            <button class="button is-block is-info is-large is-fullwidth" type="submit">Sign Up</button>
+
+            <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
         </form>
     </div>
 </div>

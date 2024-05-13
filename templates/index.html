@@ -1,39 +1,12 @@
-<!-- 
 {% extends "base.html" %}
 
 {% block content %}
 <h1 class="title">
-  Flask Login Example
+  FitnessPal signup
 </h1>
 <h2 class="subtitle">
-  Easy authentication and authorization in Flask.
+  Login to see your profile
 </h2>
-{% endblock %}
--->
-{% extends "base.html" %}
+{% endblock %} 
 
-{% block content %}
-<div class="container">
-  <h1>Hi, {{ current_user.username }}!</h1>
-</div>
 
-<div class="container">
-  <h2>Your Notes</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Note</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
-    {% for note in notes %}
-      <tr>
-        <td>{{ note.text }}</td>
-        <td>{{ note.date }}</td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
-</div>
-{% endblock %}
