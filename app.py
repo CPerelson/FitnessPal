@@ -5,7 +5,7 @@ import datetime
 
 app = Flask(__name__)
 
-gmaps = googlemaps.Client(key='')
+gmaps = googlemaps.Client(key='AIzaSyCKHN7F6eHLoJBAAwAvHfRh20qFaRYtjwM')
 
 @app.route('/about.html')
 def about():
@@ -16,11 +16,11 @@ def about():
 #@app.route('/Calender.html')
 #def Calender():
     #return render_template ('Calender.html')  
-@app.route('/Calender.html')
-def Calender():
+@app.route('/Calendar.html')
+def Calendar():
     # Get the current date
     current_date = datetime.date.today().isoformat()
-    return render_template('Calender.html', current_date=current_date)
+    return render_template('Calendar.html', current_date=current_date)
 
 @app.route('/Statistics.html')
 def Statistics():
