@@ -13,9 +13,7 @@ def about():
     return render_template('about.html', title='Home', user=user)
 
 
-#@app.route('/Calender.html')
-#def Calender():
-    #return render_template ('Calender.html')  
+ 
 @app.route('/Calendar.html')
 def Calendar():
     # Get the current date
