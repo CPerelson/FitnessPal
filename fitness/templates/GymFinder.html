@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Maps Example</title>
+
+    <style>
+        /* Set the size of the map container */
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='Main.css') }}">
+   
+</head>
+<body>
+    <header>
+        <h1>Welcome to Fitness Hub</h1>
+        <p>Your ultimate destination for fitness and wellness</p>
+    </header>
+    <nav>
+        <a href="profile.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="GymFinder.html">Gym Finder</a>
+        <a href="Calendar.html">Calendar</a>
+        <a href="Statistics.html">Statistics</a>
+    </nav>
+    <h1>Gym Finder</h1>
+    <form action="/GymFinder.html" method="POST">
+        <label for="zipcode">Enter your zipcode:</label>
+        <input type="text" id="zipcode" name="zipcode" value="{{ zipcode }}">
+        <button type="submit">Find Gyms</button>
+    </form>
+    <div id="gyms">
+        <!-- Gyms will be displayed here -->
+    </div>
+    <script>
+        // Function to fetch gyms based on user's zipcode
+        function fetchGyms() {
+            const zipcode = document.getElementById('zipcode').value;
+            fetch('/GymFinder.html?zipcode=${zipcode}')
+                .then(response => response.json())
+                .then(data => {
+                    // Display gyms in the gyms div
+                    const gymsDiv = document.getElementById('gyms');
+                    gymsDiv.innerHTML = '';
+                    data.forEach(gym => {
+                        const gymElement = document.createElement('p');
+                        gymElement.textContent = 'Name: ${gym.name}, Vicinity: ${gym.vicinity}';
+                        gymsDiv.appendChild(gymElement);
+                    });
+                });
+        }
+    </script>
+    <footer>
+        <p>&copy; 2024 Fitness Hub. All rights reserved.</p>
+    </footer>
+</body>
+</html>
