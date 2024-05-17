@@ -21,10 +21,9 @@ def login_post():
 
     # check if the user actually exists
     # take the user-supplied password, hash it, and compare it to the hashed password in the database
-    if not user or not password:
+    if not user or user.password != password:
         flash('Please check your login details and try again.')
-        return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page
-
+        return redirect(url_for('auth.login'))
     # if the above check passes, then we know the user has the right credentials
     login_user(user, remember=remember)
     return redirect(url_for('app.profile'))
