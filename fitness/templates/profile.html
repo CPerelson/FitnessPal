@@ -13,7 +13,7 @@
         <p>Your ultimate destination for fitness and wellness</p>
     </header>
     <nav>
-        <a href="Main.html">Home</a>
+        <a href="profile.html">Home</a>
         <a href="about.html">About</a>
         <a href="GymFinder.html">Gym Finder</a>
         <a href="Calendar.html">Calendar</a>
@@ -22,17 +22,16 @@
     <section>
         <h2>About Us</h2>
         <p>Welcome to Fitness Hub, your one-stop solution for all your fitness needs. Whether you're looking to lose weight, build muscle, or just improve your overall health, we have everything you need to reach your goals.</p>
-    </section>
+        {% extends "base.html" %}
+
+        {% block content %}
+        <h1 class="title">
+          Welcome, {{ name }}!
+        </h1>
+        {% endblock %}
+      </section>
     <footer>
         <p>&copy; 2024 Fitness Hub. All rights reserved.</p>
     </footer>
 </body>
 </html>
-
-{% extends "base.html" %}
-
-{% block content %}
-<h1 class="title">
-  Welcome, {{name}}!
-</h1>
-{% endblock %}

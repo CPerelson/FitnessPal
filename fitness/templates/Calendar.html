@@ -15,6 +15,17 @@
     </style>
 </head>
 <body>
+  <header>
+    <h1>Welcome to Fitness Hub</h1>
+    <p>Your ultimate destination for fitness and wellness</p>
+</header>
+  <nav>
+    <a href="profile.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="GymFinder.html">Gym Finder</a>
+    <a href="Calendar.html">Calendar</a>
+    <a href="Statistics.html">Statistics</a>
+</nav>
     <div class="container">
         <h2 id="month-year"></h2>
         <table class="table table-bordered">
@@ -76,18 +87,15 @@
 <!doctype html>
 <html>
     <head>
-        <title>Calender</title>
+        <title>Calendar</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='Main.css') }}">
     </head>
+    <footer>
+      <p>&copy; 2024 Fitness Hub. All rights reserved.</p>
+  </footer>
     <body>
-        <nav>
-            <a href="profile.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="GymFinder.html">Gym Finder</a>
-            <a href="Calendar.html">Calendar</a>
-            <a href="Statistics.html">Statistics</a>
-        </nav>
-
+        
+<!--
         <h1>Welcome to calendar!!</h1>
 
         <div class="calendar">
@@ -162,16 +170,16 @@
     const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
     const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-    monthYear.textContent = `${getMonthName(currentMonth)} ${currentYear}`;
+    monthYear.textContent = ${getMonthName(currentMonth)} ${currentYear};
 
     let datesHTML = '';
 
     for (let i = 0; i < firstDayOfMonth; i++) {
-      datesHTML += `<div class="date"></div>`;
+      datesHTML += <div class="date"></div>;
     }
 
     for (let i = 1; i <= lastDayOfMonth; i++) {
-      datesHTML += `<div class="date">${i}</div>`;
+      datesHTML += <div class="date">${i}</div>;
     }
 
     datesContainer.innerHTML = datesHTML;
@@ -207,5 +215,5 @@
 
   renderCalendar();
 });
-
+-->
 </script>

@@ -1,53 +1,40 @@
-from flask import render_template, Flask, jsonify
-from flask import request
+from flask import Blueprint, render_template, Flask, jsonify, request
+from . import db
+from flask_login import login_required, current_user
 import googlemaps
-import datetime 
+import datetime
 
-app = Flask(__name__)
+app = Blueprint('app', __name__)
 
-gmaps = googlemaps.Client(key='')
+gmaps = googlemaps.Client(key='AIzaSyCKHN7F6eHLoJBAAwAvHfRh20qFaRYtjwM')
+
+
+
+@app.route('/')
+def index():
+    return render_template('index.html') 
+
+@app.route('/profile')
+@app.route('/profile.html')
+@login_required
+def profile():
+    return render_template('profile.html', name=current_user.name)
 
 @app.route('/about.html')
 def about():
     user = {'username': 'Sara'}
     return render_template('about.html', title='Home', user=user)
 
-
-#@app.route('/Calender.html')
-#def Calender():
-    #return render_template ('Calender.html')  
-@app.route('/Calender.html')
-def Calender():
+ 
+@app.route('/Calendar.html')
+def Calendar():
     # Get the current date
     current_date = datetime.date.today().isoformat()
-    return render_template('Calender.html', current_date=current_date)
+    return render_template('Calendar.html', current_date=current_date)
 
 @app.route('/Statistics.html')
 def Statistics():
-    return render_template ('Statistics.html')  
-
-
-@app.route('/Main.html')
-def Main():
-    return render_template ('Main.html')
-
-@app.route('/login.html')
-def login():
-    return render_template('login.html')
-
-@app.route('/signup.html')
-def signup():
-    return render_template('signup.html')
-
-@app.route('/profile.html')
-def profile():
-    return render_template('profile.html')
-
-@app.route('/')
-@app.route('/loginPage.html')
-def loginPage():
-    return render_template('loginPage.html')
-
+    return render_template ('Statistics.html')
 
 @app.route('/GymFinder.html', methods=['GET', 'POST'])
 def GymFinder():
