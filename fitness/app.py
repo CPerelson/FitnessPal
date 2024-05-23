@@ -39,42 +39,32 @@ def Statistics():
 @app.route('/GymFinder.html', methods=['GET', 'POST'])
 def GymFinder():
     if request.method == 'POST':
-        # Retrieve user's location (zipcode) from the form data
         zipcode = request.form.get('zipcode')
-        
-        # Get the latitude and longitude coordinates for the provided zipcode
         location = get_location_coordinates(zipcode)
-        
         if location:
-            # Call a function to recommend gyms based on the user's location
             recommended_gyms = recommend_gyms(location)
-            
-            # Return recommended gyms as JSON response
             return jsonify(recommended_gyms)
         else:
             return jsonify([])
-    
-    # Render the GymFinder.html template with an empty form
+    elif request.method == 'GET' and 'zipcode' in request.args:
+        zipcode = request.args.get('zipcode')
+        location = get_location_coordinates(zipcode)
+        if location:
+            recommended_gyms = recommend_gyms(location)
+            return jsonify(recommended_gyms)
+        else:
+            return jsonify([])
     return render_template('GymFinder.html', zipcode='')
 
 def get_location_coordinates(zipcode):
-    # Geocode the zipcode to retrieve latitude and longitude coordinates
     geocode_result = gmaps.geocode(address=zipcode)
-    
     if geocode_result:
         location = geocode_result[0]['geometry']['location']
-        latitude = location['lat']
-        longitude = location['lng']
-        return latitude, longitude
+        return location['lat'], location['lng']
     else:
         return None
 
 def recommend_gyms(location):
-    # Perform a nearby search for gyms based on the provided location
     places = gmaps.places_nearby(location=location, radius=5000, type='gym')
-    
-    # Extract relevant information about each gym
     nearby_gyms = [{'name': place['name'], 'vicinity': place.get('vicinity', 'N/A')} for place in places['results']]
-    
-    # Return the list of recommended gyms
     return nearby_gyms

@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Google Maps Example</title>
-
+    <title>Gym Finder</title>
     <style>
         /* Set the size of the map container */
         #map {
             height: 400px;
             width: 100%;
         }
+        #gyms {
+            margin-top: 20px;
+        }
+        .gym {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
     </style>
 </head>
 <body>
-    
-
     <link rel="stylesheet" href="{{ url_for('static', filename='Main.css') }}">
-   
-</head>
-<body>
     <header>
         <h1>Welcome to Fitness Hub</h1>
         <p>Your ultimate destination for fitness and wellness</p>
@@ -30,9 +34,9 @@
         <a href="Statistics.html">Statistics</a>
     </nav>
     <h1>Gym Finder</h1>
-    <form action="/GymFinder.html" method="POST">
+    <form id="gym-finder-form">
         <label for="zipcode">Enter your zipcode:</label>
-        <input type="text" id="zipcode" name="zipcode" value="{{ zipcode }}">
+        <input type="text" id="zipcode" name="zipcode" required>
         <button type="submit">Find Gyms</button>
     </form>
     <div id="gyms">
@@ -40,21 +44,35 @@
     </div>
     <script>
         // Function to fetch gyms based on user's zipcode
-        function fetchGyms() {
+        async function fetchGyms(event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
             const zipcode = document.getElementById('zipcode').value;
-            fetch('/GymFinder.html?zipcode=${zipcode}')
-                .then(response => response.json())
-                .then(data => {
-                    // Display gyms in the gyms div
-                    const gymsDiv = document.getElementById('gyms');
-                    gymsDiv.innerHTML = '';
+            try {
+                const response = await fetch(`/GymFinder.html?zipcode=${zipcode}`);
+                const data = await response.json();
+                
+                // Display gyms in the gyms div
+                const gymsDiv = document.getElementById('gyms');
+                gymsDiv.innerHTML = '';
+                if (data.length > 0) {
                     data.forEach(gym => {
-                        const gymElement = document.createElement('p');
-                        gymElement.textContent = 'Name: ${gym.name}, Vicinity: ${gym.vicinity}';
+                        const gymElement = document.createElement('div');
+                        gymElement.className = 'gym';
+                        gymElement.innerHTML = `<strong>Name:</strong> ${gym.name} <br> <strong>Vicinity:</strong> ${gym.vicinity}`;
                         gymsDiv.appendChild(gymElement);
                     });
-                });
+                } else {
+                    gymsDiv.innerHTML = '<p>No gyms found in the provided zipcode.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching gyms:', error);
+                const gymsDiv = document.getElementById('gyms');
+                gymsDiv.innerHTML = '<p>Error fetching gyms. Please try again later.</p>';
+            }
         }
+
+        // Attach event listener to the form
+        document.getElementById('gym-finder-form').addEventListener('submit', fetchGyms);
     </script>
     <footer>
         <p>&copy; 2024 Fitness Hub. All rights reserved.</p>
